@@ -35,9 +35,17 @@
 #include <sys/types.h>
 #include <err.h>
 #include <netgraph.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+
+static void
+usage(void)
+{
+	fprintf(stderr, "usage: ngattach dev\n");
+	exit(EXIT_FAILURE);
+}
 
 int
 main(int argc, char **argv)
@@ -47,7 +55,8 @@ main(int argc, char **argv)
 	int csock, dsock;
 
 	if (argc < 2) {
-		return (1);
+		usage();
+		/* NOTREACHED */
 	}
 
 	/* Set default node name */
